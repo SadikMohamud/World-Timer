@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Timer</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header">
+          <div class="header-top">
+            <div class="logo">
+              <div class="logo-icon">
+                <span>TimeSpace</span>
+              </div>
+              <div class="header-right">
+                <button
+                  class="theme-toggle"
+                  onclick="toggleTheme()"
+                  title="Toggle theme"
+                >
+                  <span id="themeIcon">🌙</span>
+                </button>
+                <button class="btn btn-secondary">Log In</button>
+                <button class="btn btn-primary">Get The App</button>
+              </div>
+            </div>
+            <div class="search">
+              <input type="text" placeholder="Find your city" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="main-clock">
+        <div class="current-label">Current</div>
+        <div class="big-time" id="mainTime">08:15:40</div>
+        <div class="date-info">
+          <div class="sun-info">
+            <span>Sun 🔆 : 07:42 - 17:47 (10h o6m)</span><br />
+            <span id="currentDate">Wednesday, January 14 2026</span>
+          </div>
+          <div class="format-toggle">
+            <button
+              class="format-btn active"
+              id="btn12h"
+              onclick="setFormat('12h')"
+            >
+              12h
+            </button>
+            <button
+              class="format-btn active"
+              id="btn24h"
+              onclick="setFormat('24h')"
+            >
+              24h
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
