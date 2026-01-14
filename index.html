@@ -6,61 +6,104 @@
     <title>World Timer</title>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <div class="header">
-          <div class="header-top">
-            <div class="logo">
-              <div class="logo-icon">
-                <span>TimeSpace</span>
-              </div>
-              <div class="header-right">
-                <button
-                  class="theme-toggle"
-                  onclick="toggleTheme()"
-                  title="Toggle theme"
-                >
-                  <span id="themeIcon">🌙</span>
-                </button>
-                <button class="btn btn-secondary">Log In</button>
-                <button class="btn btn-primary">Get The App</button>
-              </div>
+    <div class="container">
+      <div class="header">
+        <div class="header-top">
+          <div class="logo">
+            <div class="logo-icon">
+              <span>TimeSpace</span>
             </div>
-            <div class="search">
-              <input type="text" placeholder="Find your city" />
+            <div class="header-right">
+              <button
+                class="theme-toggle"
+                onclick="toggleTheme()"
+                title="Toggle theme"
+              >
+                <span id="themeIcon">🌙</span>
+              </button>
+              <button class="btn btn-secondary">Log In</button>
+              <button class="btn btn-primary">Get The App</button>
+            </div>
+          </div>
+          <div class="search">
+            <input type="text" placeholder="Find your city" />
+          </div>
+        </div>
+        <div class="main-clock">
+          <div class="current-label">Current</div>
+          <div class="big-time" id="mainTime">08:15:40</div>
+          <div class="date-info">
+            <div class="sun-info">
+              <span>Sun 🔆 : 07:42 - 17:47 (10h 06m)</span><br />
+              <span id="currentDate">Wednesday, January 14 2026</span>
+            </div>
+            <div class="format-toggle">
+              <button
+                class="format-btn active"
+                id="btn12h"
+                onclick="setFormat('12h')"
+              >
+                12h
+              </button>
+              <button
+                class="format-btn active"
+                id="btn24h"
+                onclick="setFormat('24h')"
+              >
+                24h
+              </button>
             </div>
           </div>
         </div>
-      </div>
-    </header>
 
-    <main>
-      <div class="main-clock">
-        <div class="current-label">Current</div>
-        <div class="big-time" id="mainTime">08:15:40</div>
-        <div class="date-info">
-          <div class="sun-info">
-            <span>Sun 🔆 : 07:42 - 17:47 (10h o6m)</span><br />
-            <span id="currentDate">Wednesday, January 14 2026</span>
-          </div>
-          <div class="format-toggle">
-            <button
-              class="format-btn active"
-              id="btn12h"
-              onclick="setFormat('12h')"
-            >
-              12h
-            </button>
-            <button
-              class="format-btn active"
-              id="btn24h"
-              onclick="setFormat('24h')"
-            >
-              24h
-            </button>
+        <div class="location-section">
+          <div class="location-title">London, <br />United Kingdom</div>
+          <div class="tagline">
+            Life moves fast. stay on time <br />and enjoy everymoment!!
           </div>
         </div>
+        <div class="add-city">
+          <span style="font-size: 18px">Add Another City</span>
+          <span style="font-size: 18px">🌐</span>
+        </div>
       </div>
-    </main>
+    </div>
+    <div class="cities-grid">
+      <div class="city-card">
+        <div class="city-header">
+          <div class="city-name">Los Angeles</div>
+          <div class="utc">UTC-8</div>
+        </div>
+        <div class="city-name" id="la-time">00:15</div>
+        <div class="period">🌙 Night</div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <div class="city-header"></div>
+        <div class="city-name">New York</div>
+        <div class="utc">UTC+2</div>
+      </div>
+      <div class="city-name" id="ny-time">03:15</div>
+      <div class="period">🌙 Night</div>
+    </div>
+    <div class="city-card primary">
+      <div class="city-header">
+        <div class="city-name">London</div>
+        <div class="utc">UTC-5</div>
+      </div>
+      <div class="city-time" id="london-time">08:15</div>
+      <div class="period">🔆 Day</div>
+    </div>
+    <div class="city-card">
+      <div class="city-header">
+        <div class="city-name">Paris</div>
+        <div class="utc">UTC+0</div>
+      </div>
+      <div class="city-time" id="paris-time">08:15</div>
+      <div class="period">🔆 Day</div>
+
+      </div>
+    </div>
   </body>
 </html>
