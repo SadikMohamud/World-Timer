@@ -7,7 +7,7 @@ function updateClocks() {
   });
 
   document.getElementById('la-time').innerText = laTime;
-
+  //London tZ
   const londonTime = new Date().toLocaleTimeString('en-GB', {
     timeZone: 'Europe/London',
     hour: '2-digit',
