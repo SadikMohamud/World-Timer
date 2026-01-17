@@ -1,22 +1,58 @@
-function updateClocks() {
-  const laTime = new Date().toLocaleTimeString('en-US', {
-    timeZone: 'America/Los_Angeles',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
+//============================
+//Store all cities data
+//============================
 
-  document.getElementById('la-time').innerText = laTime;
-  //London tZ
-  const londonTime = new Date().toLocaleTimeString('en-GB', {
-    timeZone: 'Europe/London',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
+const allCities = [
+  { name: 'Los Angeles', timezone: 'America/Los_Angeles', country: 'USA' },
+  { name: 'New York', timezone: 'America/New_York', country: 'USA' },
+  { name: 'London', timezone: 'Europe/London', country: 'UK' },
+  { name: 'Tokyo', timezone: 'Asia/Tokyo', country: 'Japan' },
+  { name: 'Sydney', timezone: 'Australia/Sydney', country: 'Australia' },
+  { name: 'Paris', timezone: 'Europe/Paris', country: 'France' },
+  { name: 'Berlin', timezone: 'Europe/Berlin', country: 'Germany' },
+  { name: 'Moscow', timezone: 'Europe/Moscow', country: 'Russia' },
+  { name: 'Beijing', timezone: 'Asia/Shanghai', country: 'China' },
+  { name: 'Mumbai', timezone: 'Asia/Kolkata', country: 'India' },
+  { name: 'São Paulo', timezone: 'America/Sao_Paulo', country: 'Brazil' },
+  { name: 'Cairo', timezone: 'Africa/Cairo', country: 'Egypt' },
+  {
+    name: 'Johannesburg',
+    timezone: 'Africa/Johannesburg',
+    country: 'South Africa',
+  },
+  { name: 'Dubai', timezone: 'Asia/Dubai', country: 'UAE' },
+  { name: 'Singapore', timezone: 'Asia/Singapore', country: 'Singapore' },
+  { name: 'Mogadishu', timezone: 'Africa/Mogadishu', country: 'Somalia' },
+];
 
-  document.getElementById('primaryLocation').innerText = londonTime;
+//============================
+//Store selected cities
+//============================
+
+let selectedCities = [
+  { name: 'Mogadishu', timezone: 'Africa/Mogadishu', country: 'Somalia' },
+  { name: 'Los Angeles', timezone: 'America/Los_Angeles', country: 'USA' },
+  { name: 'New York', timezone: 'America/New_York', country: 'USA' },
+  { name: 'London', timezone: 'Europe/London', country: 'UK' },
+  { name: 'Tokyo', timezone: 'Asia/Tokyo', country: 'Japan' },
+];
+
+//==========================
+//Settings
+//============================
+
+let is24Hour = false;
+let isDarkMode = false;
+let primaryCityIndex = 0; // Mogadishu is default primary city
+
+//============================
+//get UtC offset for a timezone
+//============================
+
+function fetUtcOffset(timezone) {
+  const now = new Date();
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    timeZoneName: 'short',
+  });
 }
-
-updateClocks(); // run once immediately
-setInterval(updateClocks, 1000); // update every second
