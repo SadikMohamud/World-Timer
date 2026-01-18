@@ -248,3 +248,93 @@ function addCity(city) {
   selectedCities.push(city);
   showAllCities();
 }
+
+// ========================================
+// STEP 10: Remove a city
+// ========================================
+
+function removeCity(index) {
+  if (index === primaryCityIndex) {
+    alert('Cannot remove your primary city!');
+    return;
+  }
+
+  selectedCities.splice(index, 1);
+
+  if (index < primaryCityIndex) {
+    primaryCityIndex = primaryCityIndex - 1;
+  }
+
+  showAllCities();
+}
+
+// ========================================
+// STEP 11: Search for cities
+// ========================================
+
+function searchCities() {
+  const searchInput = document.getElementById('searchInput');
+  const query = searchInput.value.toLowerCase();
+  const resultsDiv = document.getElementById('searchResults');
+
+  if (query.length < 2) {
+    resultsDiv.classList.remove('active');
+    return;
+  }
+
+  resultsDiv.innerHTML = '';
+
+  let s = 0;
+  let resultsHTML = '';
+  while (s < allCities.length) {
+    const city = allCities[s];
+    const cityNameLower = city.name.toLowerCase();
+    const countryLower = city.country.toLowerCase();
+
+    if (cityNameLower.includes(query) || countryLower.includes(query)) {
+      resultsHTML =
+        resultsHTML +
+        '<div class="search-result-item" data-city=\'' +
+        JSON.stringify(city) +
+        "'>";
+      resultsHTML = resultsHTML + city.name + ', ' + city.country;
+      resultsHTML = resultsHTML + '</div>';
+    }
+
+    s = s + 1;
+  }
+
+  resultsDiv.innerHTML = resultsHTML;
+  resultsDiv.classList.add('active');
+
+  const resultItems = document.querySelectorAll('.search-result-item');
+  let r = 0;
+  while (r < resultItems.length) {
+    resultItems[r].onclick = function (e) {
+      const city = JSON.parse(e.target.dataset.city);
+      addCity(city);
+      document.getElementById('searchInput').value = '';
+      document.getElementById('searchResults').classList.remove('active');
+    };
+    r = r + 1;
+  }
+}
+
+// ========================================
+// STEP 12: Toggle theme
+// ========================================
+
+function toggleTheme() {
+  const body = document.body;
+  const themeIcon = document.getElementById('themeIcon');
+
+  if (isDarkMode) {
+    body.classList.remove('dark-mode');
+    themeIcon.textContent = '🌙';
+    isDarkMode = false;
+  } else {
+    body.classList.add('dark-mode');
+    themeIcon.textContent = '☀️';
+    isDarkMode = true;
+  }
+}

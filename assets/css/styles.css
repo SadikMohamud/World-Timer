@@ -76,7 +76,7 @@
         .logo-icon {
             width: 32px;
             height: 32px;
-            background: var(--bg-card-primary);
+            background: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
