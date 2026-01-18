@@ -1,13 +1,13 @@
 # World Timer
 
-# World Timer
+# TimeScroll
 
 A lightweight, cross-platform application for seamlessly tracking time across multiple time zones with an elegant, distraction-free interface.
 
 ## Features
 
 - ⏰ Real-time synchronization across multiple time zones
-- 🌍 Add, edit, and organize custom locations
+- 🌍 edit, and organize custom locations
 - 🔄 Toggle between 12/24 hour formats
 - 🎨 Dark/light theme support
 - ⌨️ Keyboard shortcuts for power users
