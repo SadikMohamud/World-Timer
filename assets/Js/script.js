@@ -94,15 +94,15 @@ function getTimePeriod(timezone) {
   const hour = parseInt(formatter.format(new Date()));
 
   if (hour >= 6 && hour < 12) {
-    return { name: 'Morning' };
+    return { icon: '🌅', name: 'Morning' };
   }
   if (hour >= 12 && hour < 18) {
-    return { name: 'Day' };
+    return { icon: '☀️', name: 'Day' };
   }
   if (hour >= 18 && hour < 22) {
-    return { name: 'Evening' };
+    return { icon: '🌆', name: 'Evening' };
   }
-  return { name: 'Night' };
+  return { icon: '🌙', name: 'Night' };
 }
 
 // ========================================
@@ -150,7 +150,7 @@ function showAllCities() {
         cardHTML +
         '<button class="remove-btn" data-index="' +
         s +
-        '">❌</button>';
+        '">×</button>';
     }
 
     cardHTML = cardHTML + '<header class="city-header">';
@@ -163,7 +163,12 @@ function showAllCities() {
       city.timezone +
       '">--:--</time>';
     cardHTML =
-      cardHTML + '<p class="period"><span>' + '</span> ' + period.name + '</p>';
+      cardHTML +
+      '<p class="period"><span>' +
+      period.icon +
+      '</span> ' +
+      period.name +
+      '</p>';
 
     card.innerHTML = cardHTML;
     grid.appendChild(card);
@@ -335,6 +340,22 @@ function toggleTheme() {
 }
 
 // ========================================
+// STEP 12: Toggle theme
+// ========================================
+
+function addCityBtn() {
+  const addCityBtn = document.getElementById('addCityBtn');
+
+  if (isDarkMode) {
+    addCityBtn.classList.remove('add-city-btn-bg-color');
+    isDarkMode = false;
+  } else {
+    addCityBtn.classList.add('add-city-btn-bg-color');
+
+    isDarkMode = true;
+  }
+}
+// ========================================
 // STEP 13: Set time format (12h or 24h)
 // ========================================
 
@@ -373,8 +394,7 @@ function startApp() {
   };
   document.getElementById('searchInput').oninput = searchCities;
   document.getElementById('addCityBtn').onclick = function () {
-    const searchContainer = document.querySelector('.search-container');
-    searchContainer.classList.toggle('active');
+    document.getElementById('searchInput').focus();
   };
 
   document.onclick = function (e) {

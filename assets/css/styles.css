@@ -1,4 +1,4 @@
-   * {
+ * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -63,29 +63,7 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-on-dark);
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
-
+       
         nav {
             display: flex;
             gap: 8px;
@@ -294,6 +272,12 @@
             border: 2px solid var(--bg-secondary);
             transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
+        }
+
+        .city-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .city-card.primary {

@@ -4,107 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
-    <title>TimeScroll</title>
+    <title>TimeScroLl</title>
   </head>
   <body>
-    <div class="container">
-      <!-- SEMANTIC HEADER -->
-      <header>
-        <div class="header-top">
-          <div class="logo">
-            <div class="logo-icon" aria-label="TimeSpot Logo">
-              <img
-                src="./assets/images/tsLogo.png"
-                style="width: 60px; height: 60px; border-radius: 50%"
-                alt="TimeSpot Logo"
-              />
-            </div>
-            <span style="padding: 20px">TimeSpot</span>
-          </div>
-          <nav aria-label="Main navigation">
-            <button
-              class="theme-toggle"
-              id="themeToggle"
-              title="Toggle theme"
-              aria-label="Toggle dark mode"
-            >
-              <span id="themeIcon" aria-hidden="true">🌙</span>
-            </button>
-            <button class="btn btn-secondary">Log In</button>
-            <button class="btn btn-primary">Get the App</button>
-          </nav>
-        </div>
-        <div class="search-container" role="search">
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="Search for a city"
-            aria-label="Search for a city"
-          />
-          <div
-            class="search-results"
-            id="searchResults"
-            role="listbox"
-            aria-label="Search results"
-          ></div>
-        </div>
-      </header>
+<div class="container">
+        <header>
+            <div class="header-top">
 
-      <!-- SEMANTIC MAIN CONTENT -->
-      <main>
-        <!-- Hero Clock Section -->
-        <section class="hero-clock" aria-labelledby="current-time-label">
-          <h1 class="current-label" id="current-time-label">Current</h1>
-          <time class="big-time" id="mainTime" datetime="">--:--:--</time>
-          <div class="date-info">
-            <div class="sun-info">
-              <p id="currentDate">Loading...</p>
+                <nav>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                        <span id="themeIcon">🌙</span>
+                    </button>
+                    <button class="btn btn-secondary">Log In</button>
+                    <button class="btn btn-primary">Get the App</button>
+                </nav>
             </div>
-            <div
-              class="format-toggle"
-              role="group"
-              aria-label="Time format selection"
-            >
-              <button class="format-btn active" id="btn12h" aria-pressed="true">
-                12h
-              </button>
-              <button class="format-btn" id="btn24h" aria-pressed="false">
-                24h
-              </button>
+            <div class="search-container">
+                <input type="search" id="searchInput" placeholder="Search for a city">
+                <div class="search-results" id="searchResults"></div>
             </div>
-          </div>
-        </section>
+        </header>
 
-        <!-- Cities Section -->
-        <section class="cities-section" aria-labelledby="cities-heading">
-          <div class="section-header">
-            <div>
-              <h2 class="location-title" id="primaryLocation">
-                London,<br />United Kingdom
-              </h2>
-              <p class="tagline">
-                Life moves fast. Stay on time<br />and enjoy every moment!
-              </p>
-            </div>
-          </div>
-          <div
-            class="cities-grid"
-            id="citiesGrid"
-            role="list"
-            aria-label="World cities"
-          ></div>
-        </section>
-      </main>
+        <main>
+            <section class="hero-clock">
+                <h1 class="current-label">Current</h1>
+                <time class="big-time" id="mainTime">--:--:--</time>
+                <div class="date-info">
+                    <div class="sun-info">
+                        <p id="currentDate">Loading...</p>
+                    </div>
+                    <div class="format-toggle">
+                        <button class="format-btn active" id="btn12h">12h</button>
+                        <button class="format-btn" id="btn24h">24h</button>
+                    </div>
+                </div>
+            </section>
 
-      <!-- SEMANTIC FOOTER -->
-      <footer>
-        <p>&copy; 2026 TimeSpot. Stay ahead in different parts of the world.</p>
-        <p>
-          <a href="#privacy">Privacy</a> ··
-          <a href="#about">About</a>
-        </p>
-      </footer>
-    </div>
-    <script src="./assets/js/script.js"></script>
+            <section class="cities-section">
+                <div class="section-header">
+                    <div>
+                        <h2 class="location-title" id="primaryLocation">Mogadishu,<br>Somalia</h2>
+                        <p class="tagline">Life moves fast. Stay on time<br>EveryTime!</p>
+                    </div>
+                </div>
+                <div class="cities-grid" id="citiesGrid"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 TimeScroLl. Stay synchronized with the world.</p>
+            <p>
+                <a href="#privacy">Privacy</a> · 
+                <a href="#terms">Terms</a> · 
+                <a href="#about">About</a>
+            </p>
+        </footer>
+    <script src="./assets/Js/script.js"></script>
   </body>
 </html>
