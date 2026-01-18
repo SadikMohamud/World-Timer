@@ -338,3 +338,57 @@ function toggleTheme() {
     isDarkMode = true;
   }
 }
+
+// ========================================
+// STEP 13: Set time format (12h or 24h)
+// ========================================
+
+function setTimeFormat(is24h) {
+  is24Hour = is24h;
+
+  const btn12h = document.getElementById('btn12h');
+  const btn24h = document.getElementById('btn24h');
+
+  if (is24h) {
+    btn12h.classList.remove('active');
+    btn24h.classList.add('active');
+  } else {
+    btn12h.classList.add('active');
+    btn24h.classList.remove('active');
+  }
+
+  updateAllTimes();
+}
+
+// ========================================
+// STEP 14: Start everything
+// ========================================
+
+function startApp() {
+  showAllCities();
+  updateAllTimes();
+  setInterval(updateAllTimes, 1000);
+
+  document.getElementById('themeToggle').onclick = toggleTheme;
+  document.getElementById('btn12h').onclick = function () {
+    setTimeFormat(false);
+  };
+  document.getElementById('btn24h').onclick = function () {
+    setTimeFormat(true);
+  };
+  document.getElementById('searchInput').oninput = searchCities;
+  document.getElementById('addCityBtn').onclick = function () {
+    const searchContainer = document.querySelector('.search-container');
+    searchContainer.classList.toggle('active');
+  };
+
+  document.onclick = function (e) {
+    const searchContainer = document.querySelector('.search-container');
+    const clickedInside = searchContainer.contains(e.target);
+    if (!clickedInside) {
+      document.getElementById('searchResults').classList.remove('active');
+    }
+  };
+}
+
+document.addEventListener('DOMContentLoaded', startApp);
