@@ -25,8 +25,7 @@ npm start
 ## Usage
 
 1. Open the application
-2. Click "+" to add time zones by city or UTC offset
-3. Drag to reorder locations
+2. Click search to add time zones by city
 4. Click any timezone to copy to clipboard
 
 ## Requirements
