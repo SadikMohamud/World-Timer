@@ -281,21 +281,6 @@
             line-height: 1.5;
         }
 
-        .add-city {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            color: var(--text-secondary);
-            font-size: 13px;
-            align-self: flex-start;
-            transition: color 0.3s ease;
-        }
-
-        .add-city:hover {
-            color: var(--text-primary);
-        }
-
         .cities-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -569,10 +554,6 @@
             }
 
             .tagline {
-                font-size: 14px;
-            }
-
-            .add-city {
                 font-size: 14px;
             }
 

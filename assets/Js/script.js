@@ -225,3 +225,26 @@ function updateAllTimes() {
   document.getElementById('currentDate').textContent =
     dateFormatter.format(now);
 }
+
+// ========================================
+// STEP 9: Add a city
+// ========================================
+
+function addCity(city) {
+  let alreadyExists = false;
+  let s = 0;
+  while (s < selectedCities.length) {
+    if (selectedCities[s].timezone === city.timezone) {
+      alreadyExists = true;
+    }
+    s = s + 1;
+  }
+
+  if (alreadyExists) {
+    alert('This city is already in your list!');
+    return;
+  }
+
+  selectedCities.push(city);
+  showAllCities();
+}
