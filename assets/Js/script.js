@@ -108,3 +108,120 @@ function getTimePeriod(timezone) {
 // ========================================
 // STEP 6: Format time for a timezone
 // ========================================
+
+function formatTime(timezone, show24h, showSeconds) {
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: showSeconds ? '2-digit' : undefined,
+    hour12: !show24h,
+  });
+
+  return formatter.format(new Date());
+}
+
+// ========================================
+// STEP 7: Display all city cards
+// ========================================
+
+function showAllCities() {
+  const grid = document.getElementById('citiesGrid');
+  grid.innerHTML = '';
+
+  let s = 0;
+  while (s < selectedCities.length) {
+    const city = selectedCities[s];
+    const isPrimary = s === primaryCityIndex;
+    const period = getTimePeriod(city.timezone);
+    const utcOffset = getUTCOffset(city.timezone);
+
+    const card = document.createElement('article');
+    if (isPrimary) {
+      card.className = 'city-card primary';
+    } else {
+      card.className = 'city-card';
+    }
+
+    let cardHTML = '';
+
+    if (!isPrimary) {
+      cardHTML =
+        cardHTML +
+        '<button class="remove-btn" data-index="' +
+        s +
+        '">❌</button>';
+    }
+
+    cardHTML = cardHTML + '<header class="city-header">';
+    cardHTML = cardHTML + '<h3 class="city-name">' + city.name + '</h3>';
+    cardHTML = cardHTML + '<span class="utc">' + utcOffset + '</span>';
+    cardHTML = cardHTML + '</header>';
+    cardHTML =
+      cardHTML +
+      '<time class="city-time" data-timezone="' +
+      city.timezone +
+      '">--:--</time>';
+    cardHTML =
+      cardHTML +
+      '<p class="period"><span>' +
+      period.icon +
+      '</span> ' +
+      period.name +
+      '</p>';
+
+    card.innerHTML = cardHTML;
+    grid.appendChild(card);
+
+    s = s + 1;
+  }
+
+  const removeButtons = document.querySelectorAll('.remove-btn');
+  let r = 0;
+  while (r < removeButtons.length) {
+    removeButtons[r].onclick = function (e) {
+      const index = parseInt(e.target.dataset.index);
+      removeCity(index);
+    };
+    r = r + 1;
+  }
+
+  if (selectedCities[primaryCityIndex]) {
+    const primary = selectedCities[primaryCityIndex];
+    document.getElementById('primaryLocation').innerHTML =
+      primary.name + ',<br>' + primary.country;
+  }
+}
+
+// ========================================
+// STEP 8: Update all times
+// ========================================
+
+function updateAllTimes() {
+  const now = new Date();
+
+  if (selectedCities[primaryCityIndex]) {
+    const primaryTz = selectedCities[primaryCityIndex].timezone;
+    const timeString = formatTime(primaryTz, is24Hour, true);
+    document.getElementById('mainTime').textContent = timeString;
+  }
+
+  const cityTimes = document.querySelectorAll('.city-time');
+  let s = 0;
+  while (s < cityTimes.length) {
+    const el = cityTimes[s];
+    const timezone = el.dataset.timezone;
+    const timeString = formatTime(timezone, is24Hour, false);
+    el.textContent = timeString;
+    s = s + 1;
+  }
+
+  const dateFormatter = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+  document.getElementById('currentDate').textContent =
+    dateFormatter.format(now);
+}
