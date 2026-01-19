@@ -1,573 +1,700 @@
- * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #ff5722;
-            --bg-secondary: #e8e8e8;
-            --bg-card: #fff;
-            --bg-card-primary: #000;
-            --text-primary: #000;
-            --text-secondary: #666;
-            --text-tertiary: #999;
-            --text-on-dark: #ff5722;
-            --text-muted-dark: #ccc;
-            --search-bg: #d4d4d4;
-        }
-
-        body.dark-mode {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2a2a2a;
-            --bg-card: #333;
-            --bg-card-primary: #ff5722;
-            --text-primary: #fff;
-            --text-secondary: #ff5722;
-            --text-tertiary: #999;
-            --text-on-dark: #000;
-            --text-muted-dark: #333;
-            --search-bg: #3a3a3a;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg-primary);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 12px;
-            transition: background 0.3s ease;
-        }
-
-        .container {
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 20px;
-            width: 100%;
-            max-width: 1200px;
-            transition: background 0.3s ease;
-        }
-
-        /* Header Styles */
-        header {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-       
-        nav {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .theme-toggle {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--bg-card-primary);
-            color: var(--text-on-dark);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            display: none;
-        }
-
-        .search-container {
-            width: 100%;
-            position: relative;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 10px 14px 10px 36px;
-            border: none;
-            background: var(--search-bg);
-            border-radius: 8px;
-            font-size: 14px;
-            color: var(--text-primary);
-            transition: background 0.3s ease;
-        }
-
-        .search-container input::placeholder {
-            color: var(--text-tertiary);
-        }
-
-        .search-container::before {
-            content: "🔍";
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 14px;
-        }
-
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
-            border-radius: 8px;
-            margin-top: 4px;
-            max-height: 300px;
-            overflow-y: auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 100;
-            display: none;
-        }
-
-        .search-results.active {
-            display: block;
-        }
-
-        .search-result-item {
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background 0.2s;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--bg-secondary);
-        }
-
-        .search-result-item:hover {
-            background: var(--bg-secondary);
-        }
-
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-
-        /* Main Content Styles */
-        main {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .hero-clock {
-            text-align: left;
-        }
-
-        .current-label {
-            color: var(--text-secondary);
-            font-size: 12px;
-            margin-bottom: 4px;
-        }
-
-        .big-time {
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -2px;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-
-        .date-info {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .sun-info {
-            color: var(--text-secondary);
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .format-toggle {
-            display: flex;
-            gap: 8px;
-        }
-
-        .format-btn {
-            padding: 6px 14px;
-            background: transparent;
-            border: 1px solid var(--text-tertiary);
-            border-radius: 16px;
-            cursor: pointer;
-            font-size: 12px;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .format-btn.active {
-            background: var(--bg-card-primary);
-            color: var(--text-on-dark);
-            border-color: var(--bg-card-primary);
-        }
-
-        .cities-section {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .section-header {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .location-title {
-            font-size: 32px;
-            font-weight: 500;
-            line-height: 1.2;
-            color: var(--text-primary);
-        }
-
-        .tagline {
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .cities-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .city-card {
-            background: var(--bg-card);
-            padding: 20px;
-            border-radius: 12px;
-            border: 2px solid var(--bg-secondary);
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .city-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .city-card.primary {
-            background: #ff5722;
-            border: 4px solid #000;
-        }
-
-        .city-card .remove-btn {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0,0,0,0.1);
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.2s;
-            font-size: 16px;
-        }
-
-        .city-card:hover .remove-btn {
-            opacity: 1;
-        }
-
-        .city-card.primary .remove-btn {
-            display: none;
-        }
-
-        .city-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .city-name {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .city-card.primary .city-name {
-            color: #fff;
-        }
-
-        .utc {
-            font-size: 11px;
-            color: var(--text-tertiary);
-        }
-
-        .city-card.primary .utc {
-            color: var(--text-muted-dark);
-        }
-
-        .city-time {
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-
-        .city-card.primary .city-time {
-            color: #fff;
-        }
-
-        .period {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: var(--text-tertiary);
-        }
-
-        .city-card.primary .period {
-            color: var(--text-muted-dark);
-        }
-
-        /* Footer Styles */
-        footer {
-            margin-top: 48px;
-            padding-top: 24px;
-            border-top: 1px solid var(--text-tertiary);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 13px;
-        }
-
-        footer p {
-            margin-bottom: 8px;
-        }
-
-        footer a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Responsive Styles */
-        @media (min-width: 640px) {
-            body {
-                padding: 20px;
-            }
-
-            .container {
-                border-radius: 24px;
-                padding: 32px;
-            }
-
-            header {
-                flex-direction: row;
-                align-items: center;
-                margin-bottom: 40px;
-            }
-
-            .header-top {
-                flex: 1;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .logo-icon {
-                width: 34px;
-                height: 34px;
-                font-size: 18px;
-            }
-
-            .theme-toggle {
-                width: 34px;
-                height: 34px;
-            }
-
-            .btn {
-                font-size: 13px;
-                padding: 9px 18px;
-            }
-
-            .btn-secondary {
-                display: block;
-            }
-
-            .search-container {
-                max-width: 280px;
-                margin: 0 auto;
-            }
-
-            .big-time {
-                font-size: 96px;
-            }
-
-            .date-info {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .location-title {
-                font-size: 40px;
-            }
-
-            .cities-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 14px;
-            }
-
-            .city-time {
-                font-size: 44px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .container {
-                border-radius: 32px;
-                padding: 48px;
-            }
-
-            header {
-                margin-bottom: 48px;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .logo-icon {
-                width: 36px;
-                height: 36px;
-                font-size: 20px;
-            }
-
-            .theme-toggle {
-                width: 36px;
-                height: 36px;
-                font-size: 18px;
-            }
-
-            .btn {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-
-            .search-container {
-                max-width: 300px;
-            }
-
-            .search-container input {
-                padding: 12px 16px 12px 40px;
-            }
-
-            .search-container::before {
-                left: 14px;
-                font-size: 16px;
-            }
-
-            .hero-clock {
-                text-align: center;
-            }
-
-            .current-label {
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
-
-            .big-time {
-                font-size: 160px;
-                letter-spacing: -4px;
-                margin-bottom: 16px;
-            }
-
-            .sun-info {
-                font-size: 14px;
-            }
-
-            .format-btn {
-                font-size: 14px;
-                padding: 8px 16px;
-                border-radius: 20px;
-            }
-
-            .section-header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: flex-end;
-            }
-
-            .location-title {
-                font-size: 48px;
-            }
-
-            .tagline {
-                font-size: 14px;
-            }
-
-            .cities-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 16px;
-            }
-
-            .city-card {
-                padding: 24px;
-                border-radius: 16px;
-            }
-
-            .city-header {
-                margin-bottom: 32px;
-            }
-
-            .city-name {
-                font-size: 18px;
-            }
-
-            .utc {
-                font-size: 12px;
-            }
-
-            .city-time {
-                font-size: 48px;
-            }
-
-            .period {
-                font-size: 14px;
-            }
-        }
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
+/* Remove default browser margins, padding, and set consistent box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   CSS VARIABLES - LIGHT MODE (DEFAULT)
+   ============================================ */
+/* Define color scheme variables for easy theme switching */
+:root {
+    --bg-primary: #ff5722;        /* Main background (orange) */
+    --bg-secondary: #e8e8e8;      /* Secondary background (light gray) */
+    --bg-card: #fff;              /* Card background (white) */
+    --bg-card-primary: #000;      /* Primary card background (black) */
+    --text-primary: #000;         /* Main text color (black) */
+    --text-secondary: #666;       /* Secondary text color (gray) */
+    --text-tertiary: #999;        /* Tertiary text color (light gray) */
+    --text-on-dark: #ff5722;      /* Text color on dark backgrounds (orange) */
+    --text-muted-dark: #ccc;      /* Muted text on dark backgrounds */
+    --search-bg: #d4d4d4;         /* Search input background */
+}
+
+/* ============================================
+   CSS VARIABLES - DARK MODE
+   ============================================ */
+/* Override color variables when dark mode is active */
+body.dark-mode {
+    --bg-primary: #1a1a1a;        /* Dark main background */
+    --bg-secondary: #2a2a2a;      /* Dark secondary background */
+    --bg-card: #333;              /* Dark card background */
+    --bg-card-primary: #ff5722;   /* Keep orange for primary cards */
+    --text-primary: #fff;         /* White text in dark mode */
+    --text-secondary: #ff5722;    /* Orange secondary text */
+    --text-tertiary: #999;        /* Keep tertiary gray */
+    --text-on-dark: #000;         /* Black text on orange backgrounds */
+    --text-muted-dark: #333;      /* Dark muted text */
+    --search-bg: #3a3a3a;         /* Dark search background */
+}
+
+/* ============================================
+   BODY & LAYOUT
+   ============================================ */
+/* Main body styling with system fonts and flexbox centering */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 12px;
+    transition: background 0.3s ease; /* Smooth theme transition */
+}
+
+/* Main container wrapper with rounded corners */
+.container {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    transition: background 0.3s ease; /* Smooth theme transition */
+}
+
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+/* Header layout with vertical stacking on mobile */
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+/* Top navigation bar */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Navigation buttons container */
+nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Theme toggle button (moon/sun icon) */
+.theme-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;           /* Make it circular */
+    background: var(--bg-card);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Scale up theme toggle on hover */
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Base button styling */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;          /* Rounded pill shape */
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;          /* Prevent text wrapping */
+    transition: all 0.3s ease;
+}
+
+/* Primary button (Get the App) */
+.btn-primary {
+    background: var(--bg-card-primary);
+    color: var(--text-on-dark);
+}
+
+/* Secondary button (Log In) - hidden on mobile */
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    display: none;                /* Hidden by default, shown on larger screens */
+}
+
+/* ============================================
+   SEARCH BAR STYLES
+   ============================================ */
+/* Search container with relative positioning for icon */
+.search-container {
+    width: 100%;
+    position: relative;
+}
+
+/* Search input field */
+.search-container input {
+    width: 100%;
+    padding: 10px 14px 10px 36px; /* Extra left padding for icon */
+    border: none;
+    background: var(--search-bg);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    transition: background 0.3s ease;
+}
+
+/* Placeholder text styling */
+.search-container input::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Search icon (magnifying glass emoji) positioned absolutely */
+.search-container::before {
+    content: "🔍";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+/* Search results dropdown container */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-radius: 8px;
+    margin-top: 4px;
+    max-height: 300px;
+    overflow-y: auto;             /* Scrollable if many results */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+    display: none;                /* Hidden by default */
+}
+
+/* Show search results when active */
+.search-results.active {
+    display: block;
+}
+
+/* Individual search result item */
+.search-result-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--bg-secondary);
+}
+
+/* Highlight search result on hover */
+.search-result-item:hover {
+    background: var(--bg-secondary);
+}
+
+/* Remove border from last search result item */
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+/* ============================================
+   MAIN CONTENT STYLES
+   ============================================ */
+/* Main content area with vertical stacking */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ============================================
+   HERO CLOCK SECTION
+   ============================================ */
+/* Hero section with large clock display */
+.hero-clock {
+    text-align: left;             /* Left-aligned on mobile, centered on desktop */
+}
+
+/* "Current" label above main time */
+.current-label {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+/* Large main time display */
+.big-time {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;         /* Tighter spacing for modern look */
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+/* Container for date and format toggle */
+.date-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Current date display */
+.sun-info {
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* 12h/24h format toggle buttons container */
+.format-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+/* Individual format toggle button */
+.format-btn {
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid var(--text-tertiary);
+    border-radius: 16px;          /* Rounded pill shape */
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+/* Active format button styling */
+.format-btn.active {
+    background: var(--bg-card-primary);
+    color: var(--text-on-dark);
+    border-color: var(--bg-card-primary);
+}
+
+/* ============================================
+   CITIES SECTION
+   ============================================ */
+/* Cities section container */
+.cities-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Section header with title and tagline */
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Location title (e.g., "Mogadishu, Somalia") */
+.location-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+/* Tagline text */
+.tagline {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Grid container for city cards */
+.cities-grid {
+    display: grid;
+    grid-template-columns: 1fr;   /* Single column on mobile */
+    gap: 12px;
+}
+
+/* ============================================
+   CITY CARD STYLES
+   ============================================ */
+/* Individual city card */
+.city-card {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid var(--bg-secondary);
+    transition: all 0.3s ease;
+    position: relative;           /* For absolute positioning of remove button */
+    cursor: pointer;
+}
+
+/* Lift card on hover */
+.city-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Primary/featured city card (orange background) */
+.city-card.primary {
+    background: #ff5722;
+    border: 4px solid #000;
+}
+
+/* Remove button for city cards */
+.city-card .remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 50%;           /* Circular button */
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;                   /* Hidden by default */
+    transition: opacity 0.2s;
+    font-size: 16px;
+}
+
+/* Show remove button on card hover */
+.city-card:hover .remove-btn {
+    opacity: 1;
+}
+
+/* Hide remove button on primary card */
+.city-card.primary .remove-btn {
+    display: none;
+}
+
+/* City card header (name and UTC offset) */
+.city-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+/* City name text */
+.city-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* White text on primary card */
+.city-card.primary .city-name {
+    color: #fff;
+}
+
+/* UTC offset label (e.g., "UTC+3") */
+.utc {
+    font-size: 11px;
+    color: var(--text-tertiary);
+}
+
+/* UTC text color on primary card */
+.city-card.primary .utc {
+    color: var(--text-muted-dark);
+}
+
+/* City time display */
+.city-time {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+/* White time text on primary card */
+.city-card.primary .city-time {
+    color: #fff;
+}
+
+/* Period indicator (AM/PM or date) */
+.period {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+}
+
+/* Period text color on primary card */
+.city-card.primary .period {
+    color: var(--text-muted-dark);
+}
+
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+/* Footer section */
+footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--text-tertiary);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+/* Footer paragraph spacing */
+footer p {
+    margin-bottom: 8px;
+}
+
+/* Footer links */
+footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Footer link hover effect */
+footer a:hover {
+    color: var(--text-primary);
+}
+
+/* ============================================
+   RESPONSIVE STYLES - TABLET (640px+)
+   ============================================ */
+@media (min-width: 640px) {
+    /* Increase body padding */
+    body {
+        padding: 20px;
+    }
+
+    /* Larger container border radius and padding */
+    .container {
+        border-radius: 24px;
+        padding: 32px;
+    }
+
+    /* Header becomes horizontal layout */
+    header {
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    /* Header top takes available space */
+    .header-top {
+        flex: 1;
+    }
+
+    /* Logo size adjustments */
+    .logo {
+        font-size: 18px;
+    }
+
+    .logo-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+    }
+
+    /* Larger theme toggle */
+    .theme-toggle {
+        width: 34px;
+        height: 34px;
+    }
+
+    /* Larger button text and padding */
+    .btn {
+        font-size: 13px;
+        padding: 9px 18px;
+    }
+
+    /* Show "Log In" button on tablet+ */
+    .btn-secondary {
+        display: block;
+    }
+
+    /* Constrain search bar width and center it */
+    .search-container {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    /* Larger main time display */
+    .big-time {
+        font-size: 96px;
+    }
+
+    /* Date info becomes horizontal layout */
+    .date-info {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Larger location title */
+    .location-title {
+        font-size: 40px;
+    }
+
+    /* Two-column grid for city cards */
+    .cities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    /* Larger city time display */
+    .city-time {
+        font-size: 44px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE STYLES - DESKTOP (1024px+)
+   ============================================ */
+@media (min-width: 1024px) {
+    /* Even larger container styling */
+    .container {
+        border-radius: 32px;
+        padding: 48px;
+    }
+
+    /* Increased header margin */
+    header {
+        margin-bottom: 48px;
+    }
+
+    /* Larger logo */
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+
+    /* Larger theme toggle */
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    /* Larger button text and padding */
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    /* Slightly wider search bar */
+    .search-container {
+        max-width: 300px;
+    }
+
+    /* More padding in search input */
+    .search-container input {
+        padding: 12px 16px 12px 40px;
+    }
+
+    /* Adjust search icon position */
+    .search-container::before {
+        left: 14px;
+        font-size: 16px;
+    }
+
+    /* Center-align hero clock on desktop */
+    .hero-clock {
+        text-align: center;
+    }
+
+    /* Larger "Current" label */
+    .current-label {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    /* HUGE main time display on desktop */
+    .big-time {
+        font-size: 160px;
+        letter-spacing: -4px;
+        margin-bottom: 16px;
+    }
+
+    /* Larger date info text */
+    .sun-info {
+        font-size: 14px;
+    }
+
+    /* Larger format toggle buttons */
+    .format-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 20px;
+    }
+
+    /* Section header becomes horizontal layout */
+    .section-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    /* Larger location title */
+    .location-title {
+        font-size: 48px;
+    }
+
+    /* Larger tagline text */
+    .tagline {
+        font-size: 14px;
+    }
+
+    /* Four-column grid for city cards on desktop */
+    .cities-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    /* More padding and larger border radius for city cards */
+    .city-card {
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    /* More space in city card header */
+    .city-header {
+        margin-bottom: 32px;
+    }
+
+    /* Larger city name text */
+    .city-name {
+        font-size: 18px;
+    }
+
+    /* Larger UTC text */
+    .utc {
+        font-size: 12px;
+    }
+
+    /* Larger city time display */
+    .city-time {
+        font-size: 48px;
+    }
+
+    /* Larger period text */
+    .period {
+        font-size: 14px;
+    }
+}
