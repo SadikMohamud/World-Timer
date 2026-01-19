@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Character encoding for proper text display -->
     <meta charset="UTF-8" />
+    <!-- Responsive design viewport settings for mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- External stylesheet link -->
     <link rel="stylesheet" href="./assets/css/styles.css" />
+    <!-- Page title shown in browser tab -->
     <title>TimeScroLl</title>
   </head>
   <body>
+    <!-- Main container wrapper for all content -->
     <div class="container">
-      <!-- SEMANTIC HEADER -->
+      
+      <!-- HEADER SECTION: Top navigation and search functionality -->
       <header>
+        <!-- Top bar with navigation buttons -->
         <div class="header-top">
           <nav aria-label="Main navigation">
+            <!-- Theme toggle button (light/dark mode switcher) -->
             <button
               class="theme-toggle"
               id="themeToggle"
               title="Toggle theme"
               aria-label="Toggle dark mode"
             >
+              <!-- Moon emoji icon for theme toggle -->
               <span id="themeIcon" aria-hidden="true">🌙</span>
             </button>
+            <!-- User authentication button -->
             <button class="btn btn-secondary">Log In</button>
+            <!-- Call-to-action button for app download -->
             <button class="btn btn-primary">Get the App</button>
           </nav>
         </div>
+        
+        <!-- Search bar container with role for screen readers -->
         <div class="search-container" role="search">
+          <!-- Search input field for city search -->
           <input
             type="search"
             id="searchInput"
             placeholder="Search for a city"
             aria-label="Search for a city"
           />
+          <!-- Container for displaying search results dynamically -->
           <div
             class="search-results"
             id="searchResults"
@@ -39,48 +54,65 @@
           ></div>
         </div>
       </header>
-
+      
+      <!-- MAIN CONTENT AREA -->
       <main>
+        <!-- Hero section: Large clock display for current time -->
         <section class="hero-clock">
+          <!-- "Current" label above the main time -->
           <h1 class="current-label">Current</h1>
+          <!-- Main time display (updated dynamically by JavaScript) -->
           <time class="big-time" id="mainTime">--:--:--</time>
+          
+          <!-- Date and time format controls -->
           <div class="date-info">
+            <!-- Container for displaying current date -->
             <div class="sun-info">
               <p id="currentDate">Loading...</p>
             </div>
+            <!-- Toggle buttons for 12h/24h time format -->
             <div class="format-toggle">
               <button class="format-btn active" id="btn12h">12h</button>
               <button class="format-btn" id="btn24h">24h</button>
             </div>
           </div>
         </section>
-
+        
+        <!-- Cities section: Display multiple city times -->
         <section class="cities-section">
+          <!-- Section header with location title and tagline -->
           <div class="section-header">
             <div>
+              <!-- Primary location heading -->
               <h2 class="location-title" id="primaryLocation">
                 Mogadishu,<br />Somalia
               </h2>
+              <!-- Marketing tagline -->
               <p class="tagline">
                 Life moves fast. Stay on time<br />EveryTime!
               </p>
             </div>
           </div>
+          <!-- Grid container for city time cards (populated by JavaScript) -->
           <div class="cities-grid" id="citiesGrid"></div>
         </section>
       </main>
-
-      <!-- SEMANTIC FOOTER -->
+      
+      <!-- FOOTER SECTION: Copyright and links -->
       <footer>
+        <!-- Copyright notice -->
         <p>
           &copy; 2026 TimeScroLl. Stay ahead in different parts of the world.
         </p>
+        <!-- Footer navigation links -->
         <p>
           <a href="#privacy">Privacy</a> ··
           <a href="#about">About</a>
         </p>
       </footer>
     </div>
+    
+    <!-- External JavaScript file (defer ensures it loads after HTML is parsed) -->
     <script src="./assets/Js/script.js" defer></script>
   </body>
 </html>
