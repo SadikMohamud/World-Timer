@@ -17,11 +17,7 @@ const allCities = [
   { name: 'Mumbai', timezone: 'Asia/Kolkata', country: 'India' },
   { name: 'São Paulo', timezone: 'America/Sao_Paulo', country: 'Brazil' },
   { name: 'Cairo', timezone: 'Africa/Cairo', country: 'Egypt' },
-  {
-    name: 'Johannesburg',
-    timezone: 'Africa/Johannesburg',
-    country: 'South Africa',
-  },
+  { name: 'Johannesburg', timezone: 'Africa/Johannesburg', country: 'South Africa'},
   { name: 'Dubai', timezone: 'Asia/Dubai', country: 'UAE' },
   { name: 'Singapore', timezone: 'Asia/Singapore', country: 'Singapore' },
   { name: 'Mogadishu', timezone: 'Africa/Mogadishu', country: 'Somalia' },
@@ -497,3 +493,4 @@ function startApp() {
 // Start the app when the DOM is fully loaded
 // ========================================
 document.addEventListener('DOMContentLoaded', startApp);
+
