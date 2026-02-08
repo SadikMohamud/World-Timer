@@ -8,7 +8,7 @@
 
 ## 🔗 Live Demo
 
-**[View Live Application](https://sadikmohamud.github.io/world-timer)**
+**[View Live Application](https://sadikmohamud.github.io/World-Timer)**
 
 ---
 
